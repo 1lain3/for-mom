@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>С 8 Марта, мама! ❤️</title>
+    <style>
+        :root {
+            --warm-pink: #ff85a1;
+            --mint: #f0fff4;
+            --text-color: #4a4a4a;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+            background: linear-gradient(135deg, #fff9fb 0%, #ffe4e9 100%);
+            font-family: 'Segoe UI', Roboto, Helvetica, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start; 
+            overflow-x: hidden;
+            touch-action: none; 
+            perspective: 1000px; 
+        }
+
+        .main-wrapper {
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+            z-index: 10;
+            padding: 40px 0; 
+            align-items: center;
+            width: 100%;
+        }
+
+        .card {
+            background: rgba(255, 255, 255, 0.92);
+            padding: 30px 20px;
+            border-radius: 30px;
+            box-shadow: 0 10px 25px rgba(255, 133, 161, 0.15);
+            width: 85%; 
+            max-width: 400px;
+            text-align: center;
+            border: 1px solid rgba(255, 255, 255, 0.5);
+            box-sizing: border-box;
+            animation: fadeIn 0.8s ease-out;
+            transition: transform 0.1s ease-out;
+            will-change: transform;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        h1 { color: var(--warm-pink); font-size: 1.8rem; margin: 0 0 15px 0; pointer-events: none; }
+        p { color: var(--text-color); font-size: 1.1rem; line-height: 1.5; margin: 10px 0; pointer-events: none; }
+
+        .gratitude-box {
+            background: var(--mint);
+            border: 1px dashed #b8d8c9;
+            border-radius: 20px;
+            padding: 15px;
+            margin: 20px 0;
+            min-height: 70px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #2d5a44;
+            font-weight: 600;
+            font-size: 1.1rem;
+            pointer-events: none;
+        }
+
+        .btn-mom {
+            background: var(--warm-pink);
+            color: white;
+            border: none;
+            padding: 16px 32px;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            cursor: pointer;
+            box-shadow: 0 6px 20px rgba(255, 133, 161, 0.4);
+            -webkit-tap-highlight-color: transparent;
+            animation: heartbeat 2s infinite ease-in-out;
+            outline: none;
+        }
+
+        @keyframes heartbeat {
+            0% { transform: scale(1); }
+            14% { transform: scale(1.08); }
+            28% { transform: scale(1); }
+            42% { transform: scale(1.08); }
+            70% { transform: scale(1); }
+        }
+
+        .btn-mom:active { transform: scale(0.95); background: #ff7091; animation: none; }
+
+        .flower-particle {
+            position: absolute;
+            pointer-events: none;
+            z-index: 5;
+            user-select: none;
+            animation: bloom 1.5s ease-out forwards;
+        }
+
+        @keyframes bloom {
+            0% { transform: scale(0) rotate(0); opacity: 0; }
+            30% { opacity: 1; }
+            100% { transform: scale(1.3) rotate(30deg) translateY(-50px); opacity: 0; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="main-wrapper">
+        <div class="card">
+            <h1>Любимой маме 🌸</h1>
+            <p>Всегда оставайся такой же прекрасной и счастливой.</p>
+            <p>Пусть этот день будет полон радости и цветов!</p>
+        </div>
+
+        <div class="card">
+            <h1>Спасибо тебе... ✨</h1>
+            <div class="gratitude-box" id="gratitude-text">За твою бесконечную доброту ❤️</div>
+            <button class="btn-mom" onclick="showGratitude(event)">Нажми сюда 🌸</button>
+        </div>
+
+        <div class="card">
+            <h1>Я тебя люблю! ❤️</h1>
+            <p>Я тебе это редко говорю, но это правда</p>
+            <p style="color: var(--warm-pink); font-weight: bold; font-size: 1.2rem;">С 8 Марта! 🌷</p>
+        </div>
+    </div>
+
+    <script>
+        const gratitudes = [
+            "За твою бесконечную поддержку! ✨",
+            "За самые вкусные завтраки! ☕",
+            "За твою веру в меня! 🌟",
+            "За твою мудрость и тепло! 📖",
+            "За твоё бесконечное терпение (особенно когда я вредничаю)! 😇",
+            "За то, что ты — лучшая мама! ❤️",
+            "За твои нежные руки! 🙌",
+            "За добрые советы в трудный час! 🌸",
+            "За то, что ты знаешь ответ на любой мой вопрос! 🧠",
+            "За каждый твой совет, который помогал мне в жизни! 💎",
+            "За то, что ты просто есть. Будь счастлива всегда! 🌸"
+        ];
+
+        function showGratitude(e) {
+            e.stopPropagation();
+            const box = document.getElementById('gratitude-text');
+            box.innerText = gratitudes[Math.floor(Math.random() * gratitudes.length)];
+            
+            const x = e.clientX || (e.touches && e.touches[0].clientX);
+            const y = e.clientY || (e.touches && e.touches[0].clientY);
+            
+            for(let i=0; i<12; i++) createFlower(x, y);
+        }
+
+        function handleMove(e) {
+            const x = e.clientX || (e.touches && e.touches[0].clientX);
+            const y = e.clientY || (e.touches && e.touches[0].clientY);
+            
+            const xRotation = (window.innerHeight / 2 - y) / 15;
+            const yRotation = (x - window.innerWidth / 2) / 15;
+
+            document.querySelectorAll('.card').forEach(card => {
+                card.style.transform = `rotateX(${xRotation}deg) rotateY(${yRotation}deg)`;
+            });
+
+            if(Math.random() > 0.85) createFlower(x, y, true);
+        }
+
+        window.addEventListener('mousemove', handleMove);
+        window.addEventListener('touchmove', handleMove, { passive: true });
+
+        window.addEventListener('touchend', () => {
+            document.querySelectorAll('.card').forEach(card => {
+                card.style.transform = `rotateX(0deg) rotateY(0deg)`;
+            });
+        });
+
+        function createFlower(x, y, isTrail = false) {
+            const f = document.createElement('div');
+            f.className = 'flower-particle';
+            const flowers = ['🌸', '🌷', '🌺', '🌼', '✨', '🍃'];
+            f.innerText = flowers[Math.floor(Math.random() * flowers.length)];
+            f.style.left = (x - 10) + 'px';
+            f.style.top = (y - 10) + 'px';
+            f.style.fontSize = isTrail ? '18px' : '28px';
+
+            document.body.appendChild(f);
+            setTimeout(() => f.remove(), 1500);
+        }
+
+        setInterval(() => {
+            const x = Math.random() * window.innerWidth;
+            createFlower(x, -10, true);
+        }, 1200);
+    </script>
+</body>
+</html>
