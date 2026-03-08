@@ -166,8 +166,8 @@
             const x = e.clientX || (e.touches && e.touches[0].clientX);
             const y = e.clientY || (e.touches && e.touches[0].clientY);
             
-            const xRotation = (window.innerHeight / 2 - y) / 15;
-            const yRotation = (x - window.innerWidth / 2) / 15;
+            const xRotation = (window.innerHeight / 2 - y) / 65;
+            const yRotation = (x - window.innerWidth / 2) / 65;
 
             document.querySelectorAll('.card').forEach(card => {
                 card.style.transform = `rotateX(${xRotation}deg) rotateY(${yRotation}deg)`;
