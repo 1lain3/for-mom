@@ -173,7 +173,10 @@
                 card.style.transform = `rotateX(${xRotation}deg) rotateY(${yRotation}deg)`;
             });
 
-            if(Math.random() > 0.85) createFlower(x, y, true);
+            if(Math.random() > 0.3) {
+                const offsetX = (Math.random() - 0.5) * 20; 
+                const offsetY = (Math.random() - 0.5) * 20;
+                createFlower(x + offsetX, y + offsetY, true);
         }
 
         window.addEventListener('mousemove', handleMove);
